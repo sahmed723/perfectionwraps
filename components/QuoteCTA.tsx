@@ -1,8 +1,12 @@
 import { Phone, Instagram } from "lucide-react";
+import { siteConfig } from "@/lib/siteConfig";
 
 export default function QuoteCTA() {
   return (
-    <section id="quote" className="relative overflow-hidden py-24 md:py-36 px-4 md:px-8 border-y border-bone/5">
+    <section
+      id="quote"
+      className="relative overflow-hidden py-24 md:py-36 px-4 md:px-8 border-y border-bone/5"
+    >
       <div className="absolute inset-0 grain opacity-[0.04]" />
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-giallo/40 to-transparent" />
       <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-giallo/40 to-transparent" />
@@ -16,24 +20,24 @@ export default function QuoteCTA() {
         </h2>
 
         <a
-          href="tel:6783842956"
+          href={`tel:${siteConfig.brand.phoneTel}`}
           className="mt-12 md:mt-16 inline-flex items-center gap-4 group"
         >
           <Phone className="text-giallo" size={28} />
           <span className="text-3xl md:text-5xl lg:text-6xl font-black tracking-tight chrome-text">
-            678.384.2956
+            {siteConfig.brand.phone.replace(/-/g, ".")}
           </span>
         </a>
 
         <div className="mt-10 flex items-center justify-center gap-3 text-bone/55">
           <a
-            href="https://instagram.com/perfectionwrapgraphics"
+            href={siteConfig.brand.social.instagram}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 hover:text-bone transition text-sm font-mono tracking-[0.15em]"
           >
             <Instagram size={16} />
-            @perfectionwrapgraphics
+            {siteConfig.brand.social.instagram.split("/").pop()}
           </a>
         </div>
 
@@ -46,6 +50,15 @@ export default function QuoteCTA() {
               {b}
             </div>
           ))}
+        </div>
+
+        <div className="mt-10">
+          <a
+            href="/free-quote"
+            className="inline-flex items-center justify-center bg-giallo text-ink px-8 py-4 font-black tracking-[0.18em] text-sm hover:bg-ambra transition"
+          >
+            REQUEST QUOTE ONLINE →
+          </a>
         </div>
       </div>
     </section>
