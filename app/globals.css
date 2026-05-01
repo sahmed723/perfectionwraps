@@ -168,3 +168,89 @@ html, body {
 
 .hide-scrollbar::-webkit-scrollbar { display: none; }
 .hide-scrollbar { scrollbar-width: none; }
+
+/* Shop OS — operator UI tokens (scoped to .shop-container) */
+.shop-container {
+  --shop-bg: #0A0A0B;
+  --shop-surface: #141416;
+  --shop-surface-2: #1A1A1D;
+  --shop-surface-3: #202024;
+  --shop-border: #1F1F23;
+  --shop-border-2: #26262A;
+  --shop-text: #F5F1E8;
+  --shop-text-2: #C8C4B8;
+  --shop-text-3: #9A9A9F;
+  --shop-text-4: #5A5A60;
+  --shop-gold: #D4A24C;
+  --shop-gold-2: #E8B85B;
+  --shop-gold-dim: rgba(212, 162, 76, 0.12);
+  --shop-gold-stroke: rgba(212, 162, 76, 0.35);
+
+  --status-new: #5B8DEF;
+  --status-progress: #D4A24C;
+  --status-quoted: #A788E5;
+  --status-won: #5BD4A4;
+  --status-lost: #E5605C;
+
+  background: var(--shop-bg);
+  color: var(--shop-text);
+  font-family: var(--font-body, "Hanken Grotesk"), system-ui, sans-serif;
+  min-height: 100vh;
+}
+
+.shop-container .shop-display {
+  font-family: var(--font-display, "Bebas Neue"), Impact, sans-serif;
+  letter-spacing: 0.02em;
+}
+.shop-container .shop-mono {
+  font-family: var(--font-mono, "JetBrains Mono"), ui-monospace, Menlo, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+@keyframes shop-fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes shop-slideIn {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes shop-pulseGold {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(212, 162, 76, 0.6); }
+  50% { box-shadow: 0 0 0 12px rgba(212, 162, 76, 0); }
+}
+@keyframes shop-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes shop-stripe {
+  0% { background-position: 0 0; }
+  100% { background-position: 24px 0; }
+}
+
+.shop-fade-up { animation: shop-fadeUp 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+.shop-slide-in { animation: shop-slideIn 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+.shop-pulse-gold { animation: shop-pulseGold 2s ease-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .shop-fade-up, .shop-slide-in, .shop-pulse-gold { animation: none !important; }
+}
+
+.shop-container ::-webkit-scrollbar { width: 8px; height: 8px; }
+.shop-container ::-webkit-scrollbar-track { background: transparent; }
+.shop-container ::-webkit-scrollbar-thumb { background: var(--shop-border-2); border-radius: 4px; }
+.shop-container ::-webkit-scrollbar-thumb:hover { background: var(--shop-text-4); }
+
+.shop-container .shop-progress-stripe {
+  background-image: linear-gradient(
+    90deg,
+    var(--shop-gold) 25%,
+    var(--shop-gold-2) 25%,
+    var(--shop-gold-2) 50%,
+    var(--shop-gold) 50%,
+    var(--shop-gold) 75%,
+    var(--shop-gold-2) 75%
+  );
+  background-size: 24px 100%;
+  animation: shop-stripe 1.4s linear infinite;
+}
